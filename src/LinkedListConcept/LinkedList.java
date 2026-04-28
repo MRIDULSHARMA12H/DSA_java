@@ -120,6 +120,23 @@ public class LinkedList {
         }
         return -1;
     }
+    public static int oprationrec(Node head , int key){
+        Node temp = head;
+        if(temp == null){
+            return -1;
+        }
+        if(temp.data == key){
+            return 0;
+        }
+        int idx = oprationrec(temp.next , key);
+        if(idx == -1){
+            return -1;
+        }
+        return idx+1;
+    }
+    public static int recSearch(int key){
+        return oprationrec(head , key);
+    }
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
@@ -131,9 +148,10 @@ public class LinkedList {
         ll.addLast(6);
         ll.addLast(7);
         ll.addMid(2,9);
+        ll.addMid(6,10);
 //        ll.print();
 //        ll.removeFirst();
-        ll.removeLast();
+//        ll.removeLast();
         ll.print();
 //        System.out.println(ll.size);
         System.out.println(ll.itrSearch(9));
