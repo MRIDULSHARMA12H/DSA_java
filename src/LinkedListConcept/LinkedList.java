@@ -137,24 +137,80 @@ public class LinkedList {
     public static int recSearch(int key){
         return oprationrec(head , key);
     }
+    public static void deleteNthNodeFromEnd(int n){
+        Node temp = head;
+        int size = 0;
+        while(temp != null){
+            size++;
+            temp = temp.next;
+        }
+        if(size == n){
+            head = head.next;
+            return;
+        }
+        int i = 1;
+        int iTofind = size - n;
+        Node prev = head;
+        while(i < iTofind){
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+    }
+     public Node finfMid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+     }
+     public boolean checkplindrome(){
+        if(head == null || head.next == null){
+            return false;
+        }
+        Node mid =  finfMid(head);
+        Node prev = null;
+        Node curr = mid;
+        Node next = null;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node left = head;
+        Node right = prev;
+        while (right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            right = right.next;
+            left = left.next;
+        }
+        return true;
+     }
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        ll.addFirst(2);
         ll.addFirst(1);
+        ll.addLast(2);
         ll.addLast(3);
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.addLast(6);
-        ll.addLast(7);
-        ll.addMid(2,9);
-        ll.addMid(6,10);
+        ll.addLast(1);
+//        ll.addLast(5);
+//        ll.addLast(6);
+//        ll.addLast(7);
+//        ll.addMid(2,9);
+//        ll.addMid(6,10);
 //        ll.print();
 //        ll.removeFirst();
 //        ll.removeLast();
         ll.print();
 //        System.out.println(ll.size);
-        System.out.println(ll.itrSearch(9));
-        System.out.println(ll.itrSearch(10));
+//        System.out.println(ll.itrSearch(9));
+//        System.out.println(ll.itrSearch(10));
+//        ll.deleteNthNodeFromEnd(3);
+        System.out.println(ll.checkplindrome());
     }
 }
