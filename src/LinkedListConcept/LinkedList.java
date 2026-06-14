@@ -157,7 +157,7 @@ public class LinkedList {
         }
         prev.next = prev.next.next;
     }
-     public Node finfMid(Node head){
+     public Node findmid(Node head){
         Node slow = head;
         Node fast = head;
         while(fast != null && fast.next != null){
@@ -170,7 +170,7 @@ public class LinkedList {
         if(head == null || head.next == null){
             return false;
         }
-        Node mid =  finfMid(head);
+        Node mid =  findmid(head);
         Node prev = null;
         Node curr = mid;
         Node next = null;
@@ -225,18 +225,47 @@ public class LinkedList {
         prev.next = null;
 
      }
+     public static void Zigzag(){
+        Node slow =head;
+        Node fast = head.next;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node mid = slow;
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next = null;
+        while(curr!= null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node lefthead = head;
+        Node righthead = prev;
+        Node nextlh = null;
+        Node nextrh = null;
+        while(lefthead != null && righthead != null){
+            nextlh = lefthead.next;
+            lefthead.next = righthead;
+            nextrh = righthead.next;
+            righthead.next = nextlh;
+            lefthead = nextlh;
+            righthead = nextrh;
+        }
+
+     }
 
     public static void main(String[] args) {
-//        LinkedList ll = new LinkedList();
-//        ll.addFirst(1);
-//        ll.addLast(2);
-//        ll.addLast(3);
-//        ll.addLast(1);
-//        ll.addLast(5);
-//        ll.addLast(6);
-//        ll.addLast(7);
-//        ll.addMid(2,9);
-//        ll.addMid(6,10);
+        LinkedList ll = new LinkedList();
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.addLast(6);
 //        ll.print();
 //        ll.removeFirst();
 //        ll.removeLast();
@@ -246,14 +275,18 @@ public class LinkedList {
 //        System.out.println(ll.itrSearch(10));
 //        ll.deleteNthNodeFromEnd(3);
 //        System.out.println(ll.checkplindrome());
-        head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = new Node(4);
-        head.next.next.next.next = head.next;
-        System.out.println(isCycle());
-        removeCycle();
-        System.out.println(isCycle());
+//        head = new Node(1);
+//        head.next = new Node(2);
+//        head.next.next = new Node(3);
+//        head.next.next.next = new Node(4);
+//        head.next.next.next.next = head.next;
+//        System.out.println(isCycle());
+//        removeCycle();
+//        System.out.println(isCycle());
+        ll.print();
+        ll.Zigzag();
+        ll.print();
+
 
     }
 }
