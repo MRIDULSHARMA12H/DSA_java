@@ -104,6 +104,36 @@ public class Build {
             int treeSum = leftsum + rightsum + root.data;
             return  treeSum;
         }
+        public static int Diameter(Node root){
+            if(root == null){
+                return 0;
+            }
+            int ldiam = Diameter(root.left);
+            int rdiam = Diameter(root.right);
+            int lh = height(root.left);
+            int rh = height(root.right);
+            int selfdiam = lh + rh + 1;
+            int maxDiameter = Math.max(selfdiam , Math.max(ldiam, rdiam));
+            return maxDiameter;
+        }
+        static class Info{
+            int diam;
+            int ht;
+            public Info(int diam, int ht){
+                this.diam = diam;
+                this.ht = ht;
+            }
+        }
+        public static Info diameter(Node root){
+            if(root == null){
+                return new Info(0,0);
+            }
+            Info leftdiam = diameter(root.left);
+            Info rightdiam = diameter(root.right);
+            int diam = Math.max(Math.max(leftdiam.diam , rightdiam.diam) , leftdiam.ht + rightdiam.ht + 1);
+            int ht = Math.max(leftdiam.ht , rightdiam.ht) +1;
+            return new Info(diam , ht);
+        }
     }
     public static void main(String[] args) {
         int [] node = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -116,6 +146,7 @@ public class Build {
 //        bt.levelorder(root);
 //        System.out.print(bt.height(root));
 //        System.out.println(bt.CountNode(root));
-        System.out.println(bt.NodeSum(root));
+//        System.out.println(bt.NodeSum(root));
+        System.out.println(bt.diameter(root).diam);
     }
 }
