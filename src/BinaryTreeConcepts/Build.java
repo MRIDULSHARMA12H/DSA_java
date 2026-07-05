@@ -134,6 +134,18 @@ public class Build {
             int ht = Math.max(leftdiam.ht , rightdiam.ht) +1;
             return new Info(diam , ht);
         }
+//        kth level of tree
+        public static  void klevel(Node root , int k , int l){
+            if(root == null){
+                return;
+            }
+            if(l == k){
+                System.out.print(root.data + " ");
+                return;
+            }
+            klevel(root.left,k,l+1);
+            klevel(root.right,k,l+1);
+        }
     }
     public static void main(String[] args) {
         int [] node = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -147,6 +159,9 @@ public class Build {
 //        System.out.print(bt.height(root));
 //        System.out.println(bt.CountNode(root));
 //        System.out.println(bt.NodeSum(root));
-        System.out.println(bt.diameter(root).diam);
+//        System.out.println(bt.diameter(root).diam);
+        int k = 3;
+        int l =1;
+        bt.klevel(root,k,l);
     }
 }
