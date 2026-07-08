@@ -40,7 +40,7 @@ public class Build {
             }
             inorder(root.left);
             System.out.print(root.data + " ");
-            preorder(root.right);
+            inorder(root.right);
         }
         public  static void postorder(Node root){
             if(root == null){
@@ -162,6 +162,6 @@ public class Build {
 //        System.out.println(bt.diameter(root).diam);
         int k = 3;
         int l =1;
-        bt.klevel(root,k,l);
+//        bt.klevel(root,k,l);
     }
 }
